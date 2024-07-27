@@ -1,0 +1,39 @@
+RESIZE 256
+SET AX 0
+SET CX 4
+SET DX 28
+SET BX 80
+SET ECX 80
+SET EDX 160
+IO_STDIN_READ Int1 BX ECX  
+IO_FS_CREATE Int5 mati.txt 
+IO_FS_TRUNCATE Int5 mati.txt EDX
+IO_FS_WRITE Int5 mati.txt BX ECX AX
+IO_FS_CREATE Int5 uri.txt
+IO_FS_CREATE Int5 santi.txt
+IO_FS_DELETE Int5 uri.txt
+IO_FS_DELETE Int5 santi.txt
+EXIT
+
+IO_FS_TRUNCATE Int5 santi.txt EDX
+IO_FS_WRITE Int5 santi.txt BX DX AX
+IO_FS_TRUNCATE Int5 uri.txt EDX
+IO_FS_WRITE Int5 uri.txt BX DX AX
+
+SET AX 10
+
+SET DX 12
+IO_FS_WRITE Int5 mati.txt AX CX DX
+SET DX 20
+IO_FS_WRITE Int5 mati.txt AX CX DX
+
+
+SET DX 0
+IO_FS_WRITE Int5 mati.txt AX CX DX
+SET DX 5
+IO_FS_WRITE Int5 mati.txt AX CX DX
+SET DX 10
+IO_FS_WRITE Int5 mati.txt AX CX DX
+IO_FS_TRUNCATE Int5 uri.txt BX
+
+MOV_IN EBX AX
